@@ -12,6 +12,8 @@ add_library(${project_name}-lib
         src/AppComponent.hpp
         src/controller/MyController.cpp
         src/controller/MyController.hpp
+        src/controller/UserController.cpp
+        src/controller/UserController.hpp
         src/dto/DTOs.hpp
 )
 
@@ -38,6 +40,20 @@ add_executable(${project_name}-test
         test/app/MyApiTestClient.hpp
         test/MyControllerTest.cpp
         test/MyControllerTest.hpp
+        test/dto/UserDTOTest.cpp
+        test/dto/UserDTOTest.hpp
+        test/dto/CategoryDTOTest.cpp
+        test/dto/CategoryDTOTest.hpp
+        test/dto/OrderDTOTest.cpp
+        test/dto/OrderDTOTest.hpp
+        test/dto/TagDTOTest.cpp
+        test/dto/TagDTOTest.hpp
+        test/dto/PetDTOTest.cpp
+        test/dto/PetDTOTest.hpp
+        test/dto/ApiResponseDTOTest.cpp
+        test/dto/ApiResponseDTOTest.hpp
+        test/UserControllerTest.cpp
+        test/UserControllerTest.hpp
 )
 target_link_libraries(${project_name}-test ${project_name}-lib)
 add_dependencies(${project_name}-test ${project_name}-lib)
