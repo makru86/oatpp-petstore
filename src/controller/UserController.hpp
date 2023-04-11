@@ -21,15 +21,137 @@ public:
         info->summary = "Create user";
         info->addConsumes < Object < UserDTO >> ("application/json");
     };
-
     ENDPOINT_ASYNC("POST", "/user", createUser) {
-
     ENDPOINT_ASYNC_INIT(createUser)
 
         Action act() override {
             return request->readBodyToDtoAsync<oatpp::Object<UserDTO>>(
                     controller->getDefaultObjectMapper()
             ).callbackTo(&createUser::returnResponse);
+        }
+
+        Action returnResponse(const oatpp::Object<UserDTO> &dto) {
+            return _return(controller->createResponse(Status::CODE_200, "OK"));
+        }
+    };
+
+    ENDPOINT_INFO(createUsersWithArrayInput) {
+        info->summary = "Creates list of users with given input array";
+        info->addConsumes < Object < UserDTO >> ("application/json");
+    };
+    ENDPOINT_ASYNC("POST", "/user/createWithArray", createUsersWithArrayInput) {
+        ENDPOINT_ASYNC_INIT(createUsersWithArrayInput)
+
+        Action act() override {
+            return request->readBodyToDtoAsync<oatpp::Object<UserDTO>>(
+                    controller->getDefaultObjectMapper()
+            ).callbackTo(&createUsersWithArrayInput::returnResponse);
+        }
+
+        Action returnResponse(const oatpp::Object<UserDTO> &dto) {
+            return _return(controller->createResponse(Status::CODE_200, "OK"));
+        }
+    };
+
+    ENDPOINT_INFO(createUsersWithListInput) {
+        info->summary = "Creates list of users with given input array";
+        info->addConsumes < Object < UserDTO >> ("application/json");
+    };
+    ENDPOINT_ASYNC("POST", "/user/createWithList", createUsersWithListInput) {
+        ENDPOINT_ASYNC_INIT(createUsersWithListInput)
+
+        Action act() override {
+            return request->readBodyToDtoAsync<oatpp::Object<UserDTO>>(
+                    controller->getDefaultObjectMapper()
+            ).callbackTo(&createUsersWithListInput::returnResponse);
+        }
+
+        Action returnResponse(const oatpp::Object<UserDTO> &dto) {
+            return _return(controller->createResponse(Status::CODE_200, "OK"));
+        }
+    };
+
+    ENDPOINT_INFO(loginUser) {
+        info->summary = "Logs user into the system";
+        info->addConsumes < Object < UserDTO >> ("application/json");
+    };
+    ENDPOINT_ASYNC("GET", "/user/login", loginUser) {
+        ENDPOINT_ASYNC_INIT(loginUser)
+
+        Action act() override {
+            return request->readBodyToDtoAsync<oatpp::Object<UserDTO>>(
+                    controller->getDefaultObjectMapper()
+            ).callbackTo(&loginUser::returnResponse);
+        }
+
+        Action returnResponse(const oatpp::Object<UserDTO> &dto) {
+            return _return(controller->createResponse(Status::CODE_200, "OK"));
+        }
+    };
+
+    ENDPOINT_INFO(logoutUser) {
+        info->summary = "Logs out current logged in user session";
+    };
+    ENDPOINT_ASYNC("GET", "/user/logout", logoutUser) {
+        ENDPOINT_ASYNC_INIT(logoutUser)
+
+        Action act() override {
+            return request->readBodyToDtoAsync<oatpp::Object<UserDTO>>(
+                    controller->getDefaultObjectMapper()
+            ).callbackTo(&loginUser::returnResponse);
+        }
+
+        Action returnResponse(const oatpp::Object<UserDTO> &dto) {
+            return _return(controller->createResponse(Status::CODE_200, "OK"));
+        }
+    };
+
+    ENDPOINT_INFO(getUserByName) {
+        info->summary = "Get user by user name";
+        info->addResponse<Object<UserDTO>>(Status::CODE_200, "application/json");
+    };
+    ENDPOINT_ASYNC("GET", "/user/{username}", getUserByName) {
+        ENDPOINT_ASYNC_INIT(getUserByName)
+
+        Action act() override {
+            return request->readBodyToDtoAsync<oatpp::Object<UserDTO>>(
+                    controller->getDefaultObjectMapper()
+            ).callbackTo(&getUserByName::returnResponse);
+        }
+
+        Action returnResponse(const oatpp::Object<UserDTO> &dto) {
+            return _return(controller->createResponse(Status::CODE_200, "OK"));
+        }
+    };
+
+    ENDPOINT_INFO(updateUser) {
+        info->summary = "Updated user";
+        info->addConsumes < Object < UserDTO >> ("application/json");
+    };
+    ENDPOINT_ASYNC("PUT", "/user/{username}", updateUser) {
+        ENDPOINT_ASYNC_INIT(updateUser)
+
+        Action act() override {
+            return request->readBodyToDtoAsync<oatpp::Object<UserDTO>>(
+                    controller->getDefaultObjectMapper()
+            ).callbackTo(&updateUser::returnResponse);
+        }
+
+        Action returnResponse(const oatpp::Object<UserDTO> &dto) {
+            return _return(controller->createResponse(Status::CODE_200, "OK"));
+        }
+    };
+
+    ENDPOINT_INFO(deleteUser) {
+        info->summary = "Delete user";
+    };
+    ENDPOINT_ASYNC("DELETE", "/user/{username}", deleteUser) {
+    ENDPOINT_ASYNC_INIT(deleteUser)
+
+        Action act() override {
+            return request->readBodyToDtoAsync<oatpp::Object<UserDTO>>(
+                    controller->getDefaultObjectMapper()
+            ).callbackTo(&deleteUser::returnResponse);
         }
 
         Action returnResponse(const oatpp::Object<UserDTO> &dto) {
