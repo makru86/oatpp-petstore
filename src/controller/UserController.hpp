@@ -98,12 +98,6 @@ public:
     ENDPOINT_ASYNC_INIT(logoutUser)
 
         Action act() override {
-            return request->readBodyToDtoAsync<oatpp::Object<UserDTO>>(
-                    controller->getDefaultObjectMapper()
-            ).callbackTo(&logoutUser::returnResponse);
-        }
-
-        Action returnResponse(const oatpp::Object<UserDTO> &dto) {
             return _return(controller->createResponse(Status::CODE_200, "OK"));
         }
     };
