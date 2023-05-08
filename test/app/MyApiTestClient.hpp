@@ -23,9 +23,9 @@ API_CLIENT_INIT(MyApiTestClient)
 
     API_CALL("POST", "/user", createUser, BODY_DTO(Object<UserDTO>, dto))
 
-    API_CALL("POST", "/user/createWithArray", createUsersWithArrayInput, BODY_DTO(Object<UserDTO>, dto))
+    API_CALL("POST", "/user/createWithArray", createUsersWithArrayInput, BODY_DTO(Object<oatpp::Vector<UserDTO>>, dto))
 
-    API_CALL("POST", "/user/createWithList", createUsersWithListInput, BODY_DTO(Object<UserDTO>, dto))
+    API_CALL("POST", "/user/createWithList", createUsersWithListInput, BODY_DTO(Object<oatpp::Vector<UserDTO>>, dto))
 
     API_CALL("GET", "/user/{username}", getUserByName, PATH(String, username))
 

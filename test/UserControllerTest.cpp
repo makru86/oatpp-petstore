@@ -35,13 +35,23 @@ void UserControllerTest::onRun() {
         /* Create Test API client */
         auto client = MyApiTestClient::createShared(requestExecutor, objectMapper);
 
-        /* Call server API */
-        auto dto = UserDTO::createShared();
-        auto response = client->createUser(dto);
+        {
+            /* Call server API createUser */
+            auto dto = UserDTO::createShared();
+            auto response = client->createUser(dto);
 
-        /* Assert that server responds with 200 */
-        OATPP_ASSERT(response->getStatusCode() == 200)
+            /* Assert that server responds with 200 */
+            OATPP_ASSERT(response->getStatusCode() == 200);
+        }
 
+        {
+            /* Call server API */
+            auto dto = UserDTO::createShared();
+            auto response = client->createUsersWithArrayInput(oatpp::Vector<UserDTO>{dto});
+
+            /* Assert that server responds with 200 */
+            OATPP_ASSERT(response->getStatusCode() == 200);
+        }
     }, std::chrono::minutes(10) /* test timeout */);
 
     OATPP_COMPONENT(std::shared_ptr<oatpp::async::Executor>, executor);

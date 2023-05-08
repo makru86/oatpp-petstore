@@ -14,7 +14,14 @@ add_library(${project_name}-lib
         src/controller/MyController.hpp
         src/controller/UserController.cpp
         src/controller/UserController.hpp
+        src/dto/ApiResponseDTO.hpp
+        src/dto/CategoryDTO.hpp
         src/dto/DTOs.hpp
+        src/dto/OrderDTO.hpp
+        src/dto/PetDTO.hpp
+        src/dto/TagDTO.hpp
+        src/dto/UserArrayDTO.hpp
+        src/dto/UserDTO.hpp
 )
 
 ## link libs
